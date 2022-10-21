@@ -1,0 +1,86 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.container-register{
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+.main-container-new{
+    padding-left: 20%;
+    padding-right: 40%;
+}
+
+.nav-new{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.nav-mini{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-mini a{
+    padding-right: 10px;
+}
+
+.nav-button{
+    justify-content: end;
+}
+.nav-item{
+    padding-right: 15px;
+}
+
+.main-dashboard{
+    padding-left: 8%;
+    padding-right: 40%;
+    text-align: center;
+}
+
+.main-account{
+    padding-left: 8%;
+    padding-right: 40%;
+}
+
+.main-container-edit{
+    padding-left: 8%;
+    padding-right: 50%;
+}
+
+input[type="date"]{
+    padding: 12px;
+    font-family: "Roboto Mono",monospace;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border: 1px lightsteelblue solid;
+    border-radius: 5px;
+    margin-left: 20 px;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.main-container-show{
+    padding-left: 8%;
+    padding-right: 8%;
+    justify-content: start;
+}
+
+.show-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}

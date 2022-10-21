@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container">
+        <div class=flashes>
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="wrapper">
+
+        <div class="nav-new">
+            <div>
+                <h1>Arbortrary</h1>
+                <h4>A site to track randomly planted trees</h4>
+            </div>
+            <div>
+                <div class="nav-mini">
+                    <h3><a href="/user/account">My Trees</a></h3>
+                    <h3>Welcome {{ session.first_name }} {{ session.last_name }}</h3>
+
+                </div>
+                <div>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item"><a class="btn btn-outline-primary" href="/plant/new">Plant a Tree</a></li>
+                        <li class="nav-item"><a class="btn btn-outline-primary" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-dashboard">
+            <table class="table border">
+                <tbody>
+                    {% for r in data_tree %}
+                    <tr>
+                        <th>Species</th>
+                        <th>Planted By</th>
+                        <th>Visitors</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>{{ r.species }}</a></td>
+                        <td>Add by {{ r.creator.first_name }}</td>
+                        <td>{{ r.visitors }}</td>
+                        <td>
+                            <form action="/plant/show/{{r.id}}" method="POST">
+                                <input type="hidden" name="plant_id" value="{{r.id}}">
+                                <input type="hidden" name="user_id" value="{{session['id']}}">
+                                <button type="submit" class="btn btn-link">details</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

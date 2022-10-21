@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>show</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container">
+        <div class=flashes>
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="wrapper">
+
+        <div class="nav-new">
+            <div>
+                <h1>Arbortrary</h1>
+                <h4>A site to track randomly planted trees</h4>
+            </div>
+            <div>
+                <div class="nav-mini">
+                    <h3><a href="/user/account">My Trees</a></h3>
+                    <h3>Welcome {{ session.first_name }} {{ session.last_name }}</h3>
+
+                </div>
+                <div>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item"><a class="btn btn-outline-primary" href="/dashboard">Dashboard</a></li>
+                        <li class="nav-item"><a class="btn btn-outline-primary" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-container-show">
+
+            <h1 class="mb-5">{plant.specie} Panted By {plant.plantedby}}</h1>
+            <div class="show-info">
+                <div>
+                    <h2 class="mb-4">Where: {plant.location}</h2>
+                    <h2 class="mb-4">When: {plant.date_planted}</h2>
+                    <h2 class="mb-4">Reason: {plant.reason}</h2>
+                </div>
+                <div>
+                    <h2 class="mb-3">Visited By:</h2>
+                    <div>
+                        {% for r in visitors %}
+                        <td>{{ r.first_name } { r.last_name }}</a></td>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
